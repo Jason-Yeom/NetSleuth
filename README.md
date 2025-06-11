@@ -166,6 +166,7 @@ This project is open source and available under the GNU GENERAL PUBLIC LICENSE 3
 - Inspired by **Fing** network discovery tool
 - Built with **Scapy** for network operations
 - **Python** and **Tkinter** for cross-platform compatibility
+- I am **Korean** _*I added this just for fun*_
 
 ## 📞 Support
 
