@@ -21,7 +21,7 @@ class FingLikeScanner:
     def __init__(self, root, has_admin_privileges=True):
         self.root = root
         self.has_admin = has_admin_privileges
-        self.root.title(f"NetSleuth: Solving Your Network Mysteries - {'Full Mode' if has_admin_privileges else 'Limited Mode'}")
+        self.root.title(f"Netoster: Solving Your Network Mysteries - {'Full Mode' if has_admin_privileges else 'Limited Mode'}")
         self.root.geometry("800x600")
 
         # Device database for speculation - FIXED MISSING BRACE
