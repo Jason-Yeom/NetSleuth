@@ -159,7 +159,7 @@ We welcome contributions! Areas for improvement:
 
 ## 📄 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the GNU GENERAL PUBLIC LICENSE 3.0.
 
 ## 🙏 Acknowledgments
 
