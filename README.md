@@ -2,7 +2,7 @@
 
 **NetSleuth: Your Network Detective**
 
-A powerful, cross-platform network scanner with device identification and speculation capabilities. Built in Python with both GUI and CLI interfaces, NetSleuth discovers devices on your network and intelligently identifies their types, vendors, and running services.
+A powerful (maybe?), cross-platform network scanner with device identification and speculation capabilities. Built in Python with both GUI and CLI interfaces, NetSleuth discovers devices on your network and intelligently identifies their types, vendors, and running services. Its my first github project.
 
 ## ✨ Features
 
