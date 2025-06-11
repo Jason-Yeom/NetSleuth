@@ -1,8 +1,8 @@
-# NetSleuth 🕵️‍♂️
+# Netoster 🕵️‍♂️
 
-**NetSleuth: Your Network Detective**
+**Netoster: Your Network Detective**
 
-A powerful (maybe?), cross-platform network scanner with device identification and speculation capabilities. Built in Python with both GUI and CLI interfaces, NetSleuth discovers devices on your network and intelligently identifies their types, vendors, and running services. Its my first github project.
+A powerful (maybe?), cross-platform network scanner with device identification and speculation capabilities. Built in Python with both GUI and CLI interfaces, Netoster discovers devices on your network and intelligently identifies their types, vendors, and running services. Its my first github project.
 
 ## ✨ Features
 
@@ -27,24 +27,24 @@ pip install scapy tkinter
 
 ### Quick Start
 
-1. **Clone or download** the NetSleuth script
+1. **Clone or download** the Netoster script
 2. **Run with full privileges** for best results:
 
 **Linux/macOS(I LIKE LINUX!!!!!!):**
-sudo python3 netsleuth.py
+sudo python3 Netoster.py
 
 _at the place where you downloaded the code_
 
 **Windows:**
 Right-click Command Prompt → "Run as Administrator"
 
-python netsleuth.py
+python Netoster.py
 
 ## 🎮 Usage
 
 ### GUI Mode (Default)
 
-1. Launch NetSleuth
+1. Launch Netoster
 2. Enter your network range (e.g., `192.168.1.1/24`)
 3. Click **🔍 Scan Network**
 4. View discovered devices in the table
@@ -66,7 +66,7 @@ Common network ranges:
 - `192.168.219.1/24`
 - `10.0.0.1/24`
 
-## 📊 What NetSleuth Discovers
+## 📊 What Netoster Discovers
 
 | Information | Description |
 |-------------|-------------|
@@ -96,7 +96,7 @@ Common network ranges:
 ### "Permission denied" errors
 
 Linux/macOS:
-sudo python3 netsleuth.py
+sudo python3 Netoster.py
 
 Windows:
 Run Command Prompt as Administrator
@@ -104,7 +104,7 @@ Run Command Prompt as Administrator
 ### GUI won't start (Linux)
 
 export DISPLAY=:0.0
-sudo -E python3 netsleuth.py
+sudo -E python3 Netoster.py
 
 ### No devices found
 - ✅ Check you're scanning the correct network range
@@ -119,7 +119,7 @@ pip install scapy
 pip install tk # If tkinter missing
 
 
-## 🎯 Device Types NetSleuth Can Identify
+## 🎯 Device Types Netoster Can Identify
 
 - 📱 **Mobile Devices**: iPhones, Android phones, tablets
 - 💻 **Computers**: Laptops, desktops, MacBooks
@@ -139,7 +139,7 @@ pip install tk # If tkinter missing
 
 ## 🔒 Security & Ethics
 
-NetSleuth is designed for:
+Netoster is designed for:
 - ✅ **Your own networks**
 - ✅ **Authorized network administration**
 - ✅ **Security auditing with permission**
@@ -178,4 +178,4 @@ Having issues? Check the troubleshooting section above or create an issue with:
 
 ---
 
-**NetSleuth** - Solving your network mysteries, one device at a time! 🕵️‍♂️✨
+**Netoster** - Solving your network mysteries, one device at a time! 🕵️‍♂️✨
