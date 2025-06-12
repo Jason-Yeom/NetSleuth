@@ -24,16 +24,63 @@ class FingLikeScanner:
         self.root.title(f"Netoster: Solving Your Network Mysteries - {'Full Mode' if has_admin_privileges else 'Limited Mode'}")
         self.root.geometry("800x600")
 
-        # Device database for speculation - FIXED MISSING BRACE
+        # Device database for speculation - FIXED
         self.device_signatures = {
-            'apple': ['iPhone', 'iPad', 'MacBook', 'iMac', 'Apple TV'],
-            'samsung': ['Galaxy', 'Samsung TV', 'Samsung Smart'],
-            'google': ['Pixel', 'Nest', 'Chromecast'],
-            'amazon': ['Echo', 'Fire TV', 'Kindle'],
-            'cisco': ['Router', 'Switch', 'Access Point'],
-            'tp-link': ['Router', 'Range Extender'],
-            'raspberry': ['Raspberry Pi']
-        }  # ← FIXED: Added missing closing brace
+            # Mobile Devices
+            'apple': ['iPhone', 'iPad', 'MacBook', 'iMac', 'Apple TV', 'AirPods', 'Watch'],
+            'samsung': ['Galaxy', 'Samsung TV', 'Samsung Smart', 'Galaxy Watch', 'Galaxy Buds'],
+            'google': ['Pixel', 'Nest', 'Chromecast', 'Google Home'],
+            'xiaomi': ['Mi', 'Redmi', 'POCO'],
+            'huawei': ['Huawei', 'Honor', 'MatePad'],
+            'oneplus': ['OnePlus', 'Nord'],
+            'lg': ['LG-', 'LG TV', 'LG Phone'],
+            'sony': ['Xperia', 'PlayStation', 'Sony TV', 'WH-', 'WF-'],
+            # Network Equipment
+            'cisco': ['Router', 'Switch', 'Access Point', 'Catalyst'],
+            'tp-link': ['Router', 'Range Extender', 'Archer', 'Deco'],
+            'netgear': ['Netgear', 'Orbi', 'Nighthawk'],
+            'linksys': ['Linksys', 'Velop'],
+            'asus': ['ASUS', 'RT-', 'AX-', 'AC-'],
+            'ubiquiti': ['UniFi', 'EdgeRouter', 'AmpliFi'],
+            'mikrotik': ['MikroTik', 'RouterBoard'],
+            'fritz': ['FRITZ!Box', 'AVM'],
+            # IoT and Smart Home
+            'raspberry': ['Raspberry Pi', 'raspberrypi'],
+            'amazon': ['Echo', 'Fire TV', 'Kindle', 'Ring'],
+            'tesla': ['Tesla', 'Model S', 'Model 3', 'Model X', 'Model Y'],
+            'philips': ['Hue', 'Philips TV'],
+            'ring': ['Ring', 'Doorbell'],
+            'nest': ['Nest', 'Thermostat'],
+            'wyze': ['Wyze', 'WyzeCam'],
+            'sonos': ['Sonos', 'Play:', 'Beam', 'Arc'],
+            # Gaming Consoles
+            'nintendo': ['Nintendo', 'Switch', 'Wii'],
+            'microsoft': ['Xbox', 'Surface'],
+            'valve': ['Steam Deck', 'SteamLink'],
+            # Computers and Laptops
+            'dell': ['Dell', 'Latitude', 'Inspiron', 'XPS'],
+            'hp': ['HP', 'Pavilion', 'EliteBook', 'ProBook'],
+            'lenovo': ['Lenovo', 'ThinkPad', 'IdeaPad'],
+            'acer': ['Acer', 'Aspire', 'Predator'],
+            'framework': ['Framework'],
+            'system76': ['System76', 'Galago', 'Oryx'],
+            # Printers and Office
+            'canon': ['Canon', 'PIXMA', 'ImageCLASS'],
+            'epson': ['Epson', 'WorkForce', 'Expression'],
+            'brother': ['Brother', 'DCP', 'MFC'],
+            # Smart TVs and Streaming
+            'roku': ['Roku'],
+            'nvidia': ['NVIDIA Shield', 'Shield TV'],
+            'tivo': ['TiVo'],
+            'webos': ['webOS', 'LG webOS'],
+            # Linux/Tech Devices
+            'ubuntu': ['Ubuntu', 'ubuntu'],
+            'debian': ['Debian', 'debian'],
+            'arch': ['Arch', 'EndeavourOS', 'Manjaro'],
+            'pine64': ['PinePhone', 'PineBook'],
+            'purism': ['Librem'],
+            'steam': ['SteamOS', 'Steam Deck']
+        }
 
         self.setup_ui()
         self.devices = []
@@ -231,35 +278,111 @@ class FingLikeScanner:
     def speculate_device_type(self, device):
         vendor = device['vendor'].lower()
         hostname = device['hostname'].lower()
+        mac = device['mac'].lower()
+        ip = device['ip']
 
+        # Check for specific device patterns first
+        # Mobile Devices
+        if any(x in hostname for x in ['iphone', 'android', 'phone', 'mobile']):
+            return '📱 Mobile Phone'
+        elif any(x in hostname for x in ['ipad', 'tablet', 'galaxy-tab']):
+            return '📱 Tablet'
+
+        # Gaming Consoles
+        elif any(x in hostname for x in ['xbox', 'playstation', 'ps4', 'ps5', 'nintendo', 'switch']):
+            return '🎮 Gaming Console'
+        elif any(x in hostname for x in ['steam-deck', 'steamdeck']):
+            return '🎮 Handheld Gaming'
+
+        # Smart Home & IoT
+        elif any(x in hostname for x in ['echo', 'alexa', 'google-home', 'nest']):
+            return '🏠 Smart Speaker'
+        elif any(x in hostname for x in ['hue', 'smart', 'iot', 'sensor']):
+            return '🏠 Smart Home Device'
+        elif any(x in hostname for x in ['ring', 'doorbell', 'camera', 'cam']):
+            return '📹 Security Camera'
+        elif any(x in hostname for x in ['thermostat', 'nest-']):
+            return '🌡️ Smart Thermostat'
+
+        # Network Equipment
+        elif any(x in hostname for x in ['router', 'gateway', 'rt-', 'archer', 'nighthawk']):
+            return '🌐 Router'
+        elif any(x in hostname for x in ['switch', 'catalyst']):
+            return '🔀 Network Switch'
+        elif any(x in hostname for x in ['access-point', 'ap-', 'unifi']):
+            return '📡 Access Point'
+        elif any(x in hostname for x in ['modem']):
+            return '📶 Modem'
+
+        # Computers
+        elif any(x in hostname for x in ['macbook', 'imac', 'mac-']):
+            return '💻 Mac Computer'
+        elif any(x in hostname for x in ['ubuntu', 'debian', 'arch', 'linux', 'fedora', 'manjaro']):
+            return '🐧 Linux Computer'
+        elif any(x in hostname for x in ['windows', 'desktop', 'pc-', 'laptop']):
+            return '💻 Windows Computer'
+        elif any(x in hostname for x in ['thinkpad', 'latitude', 'pavilion', 'inspiron']):
+            return '💻 Laptop'
+        elif any(x in hostname for x in ['server', 'nas', 'storage']):
+            return '🖥️ Server/NAS'
+
+        # Media Devices
+        elif any(x in hostname for x in ['tv', 'roku', 'chromecast', 'apple-tv', 'fire-tv']):
+            return '📺 Media Device'
+        elif any(x in hostname for x in ['sonos', 'speaker', 'audio']):
+            return '🔊 Audio Device'
+
+        # Printers
+        elif any(x in hostname for x in ['printer', 'hp-', 'canon-', 'epson', 'brother']):
+            return '🖨️ Printer'
+
+        # Development/Tech Devices
+        elif any(x in hostname for x in ['pi', 'raspberry', 'esp32', 'arduino']):
+            return '🔧 Dev Board/IoT'
+        elif any(x in hostname for x in ['docker', 'kubernetes', 'k8s']):
+            return '☸️ Container Host'
+
+        # Check by vendor if hostname doesn't give clues
         for key, types in self.device_signatures.items():
             if key in vendor or key in hostname:
                 if 'apple' in key:
                     if any(x in hostname for x in ['iphone', 'ipad']):
-                        return 'Mobile Device'
+                        return '📱 Apple Mobile'
                     elif any(x in hostname for x in ['macbook', 'imac']):
-                        return 'Computer'
+                        return '💻 Apple Computer'
                     elif 'apple-tv' in hostname:
-                        return 'Media Device'
+                        return '📺 Apple TV'
                     else:
-                        return 'Apple Device'
+                        return '🍎 Apple Device'
                 elif 'samsung' in key:
-                    return 'Samsung Device'
-                elif 'cisco' in key:
-                    return 'Network Equipment'
-                elif 'raspberry' in key or 'raspberrypi' in hostname:
-                    return 'IoT Device'
+                    return '📱 Samsung Device'
+                elif any(network_vendor in key for network_vendor in ['cisco', 'tp-link', 'netgear', 'asus']):
+                    return '🌐 Network Equipment'
+                elif 'raspberry' in key:
+                    return '🔧 Raspberry Pi'
+                elif any(gaming in key for gaming in ['nintendo', 'microsoft', 'sony']):
+                    return '🎮 Gaming Device'
 
-        if any(x in hostname for x in ['router', 'gateway']):
-            return 'Router'
-        elif any(x in hostname for x in ['printer', 'hp-', 'canon-']):
-            return 'Printer'
-        elif any(x in hostname for x in ['tv', 'roku', 'chromecast']):
-            return 'Media Device'
-        elif any(x in hostname for x in ['phone', 'android', 'samsung']):
-            return 'Mobile Device'
+        # Check by IP patterns
+        if ip.endswith('.1') or ip.endswith('.254'):
+            return '🌐 Gateway/Router'
 
-        return 'Unknown Device'
+        # Fallback based on common port patterns
+        if device.get('ports'):
+            ports = device['ports']
+            if 80 in ports or 443 in ports:
+                if 22 in ports:
+                    return '🖥️ Linux Server'
+                elif 3389 in ports:
+                    return '💻 Windows Computer'
+                else:
+                    return '🌐 Web Server'
+            elif 22 in ports:
+                return '🖥️ SSH Server'
+            elif 25 in ports or 110 in ports:
+                return '📧 Mail Server'
+
+        return '❓ Unknown Device'
 
     def quick_port_scan(self, ip):
         common_ports = [21, 22, 23, 25, 53, 80, 110, 143, 443, 993, 995]
@@ -363,6 +486,7 @@ def main():
             print("   Right-click Command Prompt → 'Run as Administrator'")
         else:
             print("   Run with: sudo python3 script.py")
+        print("\n🔄 Starting with limited functionality (ping-based scanning)...")
     else:
         print("✅ Running with administrator privileges - Full ARP scanning available")
 
